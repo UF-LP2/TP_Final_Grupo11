@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -59,40 +58,49 @@ namespace TPfinal_LP2
         public List<Vertex> Reparticion_Greedy(Graph grafo_total, List<Vertex> destinos_avisitar) //le pasamos la lista de todos los electrodomesticos a entregar, le pasamos un grafo que determina todas las adyacencias y una lista de vertices que son los destinos a recorrer obligatoriamente
         {
             int k = 0;// inicializamos en 0 porque siempre parte de liniers
-            int u = 0;
+
             List < Vertex > lista_aux= new List<Vertex>();
+            Vertex vertice_actual = grafo_total.get_lista_vertices()[0];
+            Vertex vertice_aux;
 
             while (destinos_avisitar.Count > 0)
             {
-                for (int i = 0; i < grafo_total.get_lista_vertices().Count(); i++) //recorremos los vertices del grafo (armado en funcion de los electrodomesticos a repartir)
-                {
-
+              
                     float min = 32768; //"valor muy grande de un float" que siempre va a superar nuestras distancias establecidas
                     int pos = -1;
-                   
                     
+                    // comenzamos con el grafo en i=0 (liniers)
                     //recorremos los adyacentes del vertice para armar el recorrido
-                    for (int j = 0; j < grafo_total.get_lista_vertices()[i].get_lista_edge().Count; j++) 
+                    for (int j = 0; j < vertice_actual.get_lista_edge().Count; j++) 
                     {
                            // buscamos el adyacente con menor distancia
-                           if (grafo_total.get_lista_vertices()[i].get_lista_edge()[j].get_costo_camino() < min && grafo_total.get_lista_vertices()[i].get_ult_destino()!= grafo_total.get_lista_vertices()[i].get_lista_edge()[j].get_id_destino())
+                           if (vertice_actual.get_lista_edge()[j].get_costo_camino() < min && vertice_actual.get_ult_destino()!= vertice_actual.get_lista_edge()[j].get_id_destino())
                            {
-                             min = grafo_total.get_lista_vertices()[i].get_lista_edge()[j].get_costo_camino(); //guardamos la distancia minima
+                             min = vertice_actual.get_lista_edge()[j].get_costo_camino(); //guardamos la distancia minima
                              pos = j; //nos guardamos la posicion del adyacente que se encuentra a menor distancia
+                           
+                             
                            }
  
                     }
-                    grafo_total.get_lista_vertices()[i].set_ultimo_destino(grafo_total.get_lista_vertices()[i].get_lista_edge()[pos].get_id_destino());
-                    lista_aux.Add(grafo_total.get_lista_vertices()[i]);// gurdamos en la lista auxiliar el recorrido
+                    vertice_actual.set_ultimo_destino(vertice_actual.get_lista_edge()[pos].get_id_destino());
+                    lista_aux.Add(vertice_actual);// gurdamos en la lista auxiliar el recorrido
                     
                     // buscamos la localidad en el grafo (es nuestro destino final)
-                    if (grafo_total.get_lista_vertices()[i].get_lista_edge()[pos].get_id_destino() == destinos_avisitar[k].get_id())
+                    if (vertice_actual.get_lista_edge()[pos].get_id_destino() == destinos_avisitar[k].get_id())
                     {
                         destinos_avisitar.Remove(destinos_avisitar[k]); //eliminamos de la lista el nodo por el que ya pasamos
                         k++;// tenemos como destino final nuestro prox vertice 
+                    } 
+                   for(int i=0; i< grafo_total.get_lista_vertices().Count; i++)
+                   {
+                    if (grafo_total.get_lista_vertices()[i].get_id()== grafo_total.get_lista_vertices()[i].get_lista_edge()[pos].get_id_destino())
+                    {
+                        vertice_actual = grafo_total.get_lista_vertices()[i];
+                        break;
                     }
+                   }
 
-                }
             }// fin for i
             return lista_aux;
         }// fin while
