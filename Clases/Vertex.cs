@@ -37,7 +37,7 @@ namespace TPfinal_LP2
         int id; // el numero de cada comuna 
         string nombre;
         List<Edge> edge_list; //lista de adyacentes
-        int ult_destino; // id del ultimo edge al cual fue
+        List<int> antysig_destino = new List<int>(); // id del ultimo edge al cual fue
         float dist_liniers; // distancia a liniers de cada vertice 
 
 
@@ -67,13 +67,12 @@ namespace TPfinal_LP2
         { 
             return dist_liniers;
         }
-        public int get_ult_destino()
+        public List<int> get_antysig_destino()
         {
-            return ult_destino;
+            return antysig_destino;
         }
-        public void set_ultimo_destino(int _id)
-        {
-            ult_destino = _id;
-        }
+        
+
+        
     }
 }
