@@ -917,7 +917,7 @@ public partial class Form1 : Form
                         ListViewItem lista_forms = new ListViewItem(item.get_nombre());
                         lista_camioneta_view.Items.Add(lista_forms);
                     }
-
+                    
                     camioneta.Entregar_Productos(lista_camioneta, lista_vert_cam);
 
                     lista_ = new List<Electrodomesticos>();
@@ -928,7 +928,7 @@ public partial class Form1 : Form
                             value = DateTime.Compare(item.get_datetime(), DateTime.Now);
                             if (item.get_prioridad() == 1 && value < 0 || item.get_prioridad() == 1 && value == 0)// es el dia de su entrega pero no se hizo
                             {
-                                lista_.Add(item);// lista de lementos con prioridad 1
+                                lista_.Add(item);// lista de elementos con prioridad 1
                                 lista_vert_cam.Add(item.get_destino_entrega());
                             }
                             else if (item.get_prioridad() == 2 && value < 0)
@@ -954,13 +954,13 @@ public partial class Form1 : Form
 
                 case 1:
                 {
-                    
+                    lista_camioneta_view.Items.Clear();
                     foreach (Vertex item in lista_recorrido_camioneta)
                     {
                         ListViewItem lista_forms = new ListViewItem(item.get_nombre());
                         lista_camioneta_view.Items.Add(lista_forms);
                     }
-
+                    
                     camioneta.Entregar_Productos(lista_camioneta, lista_vert_cam);
 
                     lista_ = new List<Electrodomesticos>();
@@ -997,7 +997,7 @@ public partial class Form1 : Form
 
                 case 2:
                 {
-                    
+                    lista_camioneta_view.Items.Clear();
                     foreach (Vertex item in lista_recorrido_camioneta)
                     {
                         ListViewItem lista_forms = new ListViewItem(item.get_nombre());
@@ -1039,7 +1039,7 @@ public partial class Form1 : Form
 
                 case 3:
                 {
-                    
+                    lista_camioneta_view.Items.Clear();
                     foreach (Vertex item in lista_recorrido_camioneta)
                     {
                         ListViewItem lista_forms = new ListViewItem(item.get_nombre());
@@ -1081,7 +1081,7 @@ public partial class Form1 : Form
 
                 default:
                 {
-                    lista_camioneta_view.Clear();
+                    lista_camioneta_view.Items.Clear();
                     break;
                 }
         }
