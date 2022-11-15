@@ -541,7 +541,15 @@ namespace TPfinal_LP2
             List<Electrodomesticos> lista = cocimundo.llenado_dinamico_(lista_el, furgon);
             
             List<Vertex> lista_vertices_entrega = cocimundo.ordenar_pordistancia(lista_el);
-            List<Vertex> lista_recorrido = furgon.Reparticion_Greedy(grafo, lista_vertices_entrega);
+
+            List<Vertex> lista_aux_vert = new List<Vertex>();
+            lista_aux_vert.Add(Liniers);
+            lista_aux_vert.Add(comuna7);
+            lista_aux_vert.Add(comuna10);
+            lista_aux_vert.Add(comuna11);
+
+
+            List<Vertex> lista_recorrido = furgon.Reparticion_Greedy(grafo, lista_aux_vert);
             
         }
     }

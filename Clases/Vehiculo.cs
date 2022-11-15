@@ -57,11 +57,8 @@ namespace TPfinal_LP2
 
         public List<Vertex> Reparticion_Greedy(Graph grafo_total, List<Vertex> destinos_avisitar) //le pasamos la lista de todos los electrodomesticos a entregar, le pasamos un grafo que determina todas las adyacencias y una lista de vertices que son los destinos a recorrer obligatoriamente
         {
-            int k = 0;// inicializamos en 0 porque siempre parte de liniers
-
             List < Vertex > lista_aux= new List<Vertex>();
             Vertex vertice_actual = grafo_total.get_lista_vertices()[0];
-            Vertex vertice_aux;
 
             while (destinos_avisitar.Count > 0)
             {
@@ -87,10 +84,9 @@ namespace TPfinal_LP2
                     lista_aux.Add(vertice_actual);// gurdamos en la lista auxiliar el recorrido
                     
                     // buscamos la localidad en el grafo (es nuestro destino final)
-                    if (vertice_actual.get_lista_edge()[pos].get_id_destino() == destinos_avisitar[k].get_id())
+                    if (vertice_actual.get_lista_edge()[pos].get_id_destino() == destinos_avisitar[0].get_id())
                     {
-                        destinos_avisitar.Remove(destinos_avisitar[k]); //eliminamos de la lista el nodo por el que ya pasamos
-                        k++;// tenemos como destino final nuestro prox vertice 
+                        destinos_avisitar.Remove(destinos_avisitar[0]); //eliminamos de la lista el nodo por el que ya pasamos
                     } 
                    for(int i=0; i< grafo_total.get_lista_vertices().Count; i++)
                    {
@@ -101,9 +97,9 @@ namespace TPfinal_LP2
                     }
                    }
 
-            }// fin for i
+            }
             return lista_aux;
-        }// fin while
+        }
 
         
 
