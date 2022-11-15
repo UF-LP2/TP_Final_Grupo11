@@ -232,7 +232,7 @@ namespace TPfinal_LP2
                 }
                 
             }
-            lista_aux.Add(liniers);
+            lista_aux.Add(liniers);// indicamos que siempre debe volver a liniers
             return lista_aux;
 
         }

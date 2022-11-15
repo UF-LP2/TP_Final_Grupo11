@@ -926,7 +926,7 @@ public partial class Form1 : Form
                         foreach (Electrodomesticos item in lista_el)
                         {
                             value = DateTime.Compare(item.get_datetime(), DateTime.Now);
-                            if (item.get_prioridad() == 1 && value < 0)// es el dia de su entrega pero no se hizo
+                            if (item.get_prioridad() == 1 && value < 0 || item.get_prioridad() == 1 && value == 0)// es el dia de su entrega pero no se hizo
                             {
                                 lista_.Add(item);// lista de lementos con prioridad 1
                                 lista_vert_cam.Add(item.get_destino_entrega());
@@ -943,8 +943,8 @@ public partial class Form1 : Form
 
                     }
 
-                    lista_vert_cam = cocimundo.ordenar_pordistancia(lista_camioneta, Liniers);
                     lista_camioneta = cocimundo.llenado_dinamico_(ref lista_, camioneta);
+                    lista_vert_cam = cocimundo.ordenar_pordistancia(lista_camioneta, Liniers);
                     lista_recorrido_camioneta = camioneta.Reparticion_Greedy(grafo, lista_vert_cam);
                     
                     contador_camioneta++;
@@ -969,7 +969,7 @@ public partial class Form1 : Form
                         foreach (Electrodomesticos item in lista_el)
                         {
                             value = DateTime.Compare(item.get_datetime(), DateTime.Now);
-                            if (item.get_prioridad() == 1 && value < 0)// es el dia de su entrega pero no se hizo
+                            if (item.get_prioridad() == 1 && value < 0 || item.get_prioridad() == 1 && value == 0)// es el dia de su entrega pero no se hizo
                             {
                                 lista_.Add(item);// lista de lementos con prioridad 1
                                 lista_vert_cam.Add(item.get_destino_entrega());
@@ -986,8 +986,8 @@ public partial class Form1 : Form
 
                     }
 
-                    lista_vert_cam = cocimundo.ordenar_pordistancia(lista_camioneta, Liniers);
                     lista_camioneta = cocimundo.llenado_dinamico_(ref lista_, camioneta);
+                    lista_vert_cam = cocimundo.ordenar_pordistancia(lista_camioneta, Liniers);
                     lista_recorrido_camioneta = camioneta.Reparticion_Greedy(grafo, lista_vert_cam);
 
                     contador_camioneta++;
@@ -1012,7 +1012,7 @@ public partial class Form1 : Form
                         foreach (Electrodomesticos item in lista_el)
                         {
                             value = DateTime.Compare(item.get_datetime(), DateTime.Now);
-                            if (item.get_prioridad() == 1 && value < 0)// es el dia de su entrega pero no se hizo
+                            if (item.get_prioridad() == 1 && value < 0 || item.get_prioridad() == 1 && value == 0)// es el dia de su entrega pero no se hizo
                             {
                                 lista_.Add(item);// lista de lementos con prioridad 1
                                 lista_vert_cam.Add(item.get_destino_entrega());
@@ -1029,8 +1029,8 @@ public partial class Form1 : Form
 
                     }
 
-                    lista_vert_cam = cocimundo.ordenar_pordistancia(lista_camioneta, Liniers);
                     lista_camioneta = cocimundo.llenado_dinamico_(ref lista_, camioneta);
+                    lista_vert_cam = cocimundo.ordenar_pordistancia(lista_camioneta, Liniers);
                     lista_recorrido_camioneta = camioneta.Reparticion_Greedy(grafo, lista_vert_cam);
 
                     contador_camioneta++;
@@ -1054,7 +1054,7 @@ public partial class Form1 : Form
                         foreach (Electrodomesticos item in lista_el)
                         {
                             value = DateTime.Compare(item.get_datetime(), DateTime.Now);
-                            if (item.get_prioridad() == 1 && value < 0)// es el dia de su entrega pero no se hizo
+                            if (item.get_prioridad() == 1 && value < 0 || item.get_prioridad() == 1 && value == 0)// es el dia de su entrega pero no se hizo
                             {
                                 lista_.Add(item);// lista de lementos con prioridad 1
                                 lista_vert_cam.Add(item.get_destino_entrega());
@@ -1071,8 +1071,8 @@ public partial class Form1 : Form
 
                     }
 
-                    lista_vert_cam = cocimundo.ordenar_pordistancia(lista_camioneta, Liniers);
                     lista_camioneta = cocimundo.llenado_dinamico_(ref lista_, camioneta);
+                    lista_vert_cam = cocimundo.ordenar_pordistancia(lista_camioneta, Liniers);
                     lista_recorrido_camioneta = camioneta.Reparticion_Greedy(grafo, lista_vert_cam);
 
                     contador_camioneta++;
