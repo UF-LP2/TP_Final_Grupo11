@@ -315,7 +315,7 @@ namespace TPfinal_LP2
 
             List<Edge> lista_caminos_com16 = new List<Edge>();
             lista_caminos_com16.Add(camino16_4);
-            lista_caminos_com16.Add(camino16_4);
+            lista_caminos_com16.Add(camino16_17);
 
             List<Edge> lista_caminos_com17 = new List<Edge>();
             lista_caminos_com17.Add(camino17_4);
@@ -445,60 +445,60 @@ namespace TPfinal_LP2
             Cliente cliente6 = new Cliente("Bruno", "Sanchez", "14526998", Liniers);
             Cliente cliente7 = new Cliente("Fran", "Gutierrez", "41256633", comuna20);
             // declaracion productos
-            Dimensiones d_cocina = new Dimensiones(0.54F, 0.50F, 0.85F, 35F);
-            LineaBlanca cocina = new LineaBlanca("Lenovo", 3256, d_cocina, 2, comuna5, cliente1);
+            Dimensiones d_cocina = new Dimensiones(5, 5, 8, 35);
+            LineaBlanca cocina = new LineaBlanca("Lenovo", 3256, d_cocina, 2, comuna5, cliente1, 9, 11, 2022);
 
-            Dimensiones d_calefon = new Dimensiones(0.54F, 0.50F, 0.85F, 35F);
-            LineaBlanca calefon = new LineaBlanca("Philco", 3233, d_calefon, 1, comuna26, cliente3);
+            Dimensiones d_calefon = new Dimensiones(3, 3, 1, 35);
+            LineaBlanca calefon = new LineaBlanca("Philco", 3233, d_calefon, 1, comuna26, cliente3, 12, 11, 2022);
 
-            Dimensiones d_termotanque = new Dimensiones(0.92F, 0.43F, 0.43F, 30F);
-            LineaBlanca termotanque = new LineaBlanca("Philco", 3225, d_termotanque, 2, comuna5, cliente1);
+            Dimensiones d_termotanque = new Dimensiones(9, 4, 4, 30);
+            LineaBlanca termotanque = new LineaBlanca("Philco", 3225, d_termotanque, 2, comuna5, cliente1, 10, 11, 2022);
 
-            Dimensiones d_lavarropas = new Dimensiones(0.85F, 0.60F, 0.42F, 62F);
-            LineaBlanca lavarropas = new LineaBlanca("Philips", 3285, d_lavarropas, 3, comuna10, cliente4);
+            Dimensiones d_lavarropas = new Dimensiones(8, 6, 4, 62);
+            LineaBlanca lavarropas = new LineaBlanca("Philips", 3285, d_lavarropas, 3, comuna10, cliente4, 11, 11, 2022);
 
-            Dimensiones d_secarropas = new Dimensiones(0.84F, 0.59F, 0.55F, 7F);
-            LineaBlanca secarropas = new LineaBlanca("Philips", 3286, d_secarropas, 3, comuna10, cliente4);
+            Dimensiones d_secarropas = new Dimensiones(8, 5, 5, 7);
+            LineaBlanca secarropas = new LineaBlanca("Philips", 3286, d_secarropas, 3, comuna10, cliente4, 11, 11, 2022);
 
-            Dimensiones d_heladera = new Dimensiones(1.42F, 0.61F, 0.62F, 47F);
-            LineaBlanca heladera = new LineaBlanca("Philco", 3201, d_heladera, 1, comuna20, cliente7);
+            Dimensiones d_heladera = new Dimensiones(4, 6, 6, 47);
+            LineaBlanca heladera = new LineaBlanca("Philco", 3201, d_heladera, 1, comuna20, cliente7, 10, 11, 2022);
 
-            Dimensiones d_microondas = new Dimensiones(0.29F, 0.49F, 0.40F, 15.3F);
-            LineaBlanca microondas = new LineaBlanca("Samsung", 3210, d_microondas, 2, comuna1, cliente5);
+            Dimensiones d_microondas = new Dimensiones(3, 5, 4, 15);
+            LineaBlanca microondas = new LineaBlanca("Samsung", 3210, d_microondas, 2, comuna1, cliente5, 12, 11, 2022);
 
-            Dimensiones d_freezer = new Dimensiones(0.85F, 0.94F, 0.52F, 33F);
-            LineaBlanca freezer = new LineaBlanca("Samsung", 3202, d_freezer, 3, comuna26, cliente3);
+            Dimensiones d_freezer = new Dimensiones(8, 9, 5, 33);
+            LineaBlanca freezer = new LineaBlanca("Samsung", 3202, d_freezer, 3, comuna26, cliente3, 10, 11, 2022);
 
 
-            Dimensiones d_laptop = new Dimensiones(0.36F, 0.25F, 0.19F, 1.7F);
-            Electronicos laptop = new Electronicos("HP", 2015, d_laptop, 1, comuna1, cliente5);
+            Dimensiones d_laptop = new Dimensiones(4, 2, 2, 2);
+            Electronicos laptop = new Electronicos("HP", 2015, d_laptop, 1, comuna1, cliente5, 10, 11, 2022);
 
-            Dimensiones d_impresora = new Dimensiones(0.42F, 0.36F, 0.41F, 8F);
-            Electronicos impresora = new Electronicos("HP", 2010, d_impresora, 3, Liniers, cliente6);
+            Dimensiones d_impresora = new Dimensiones(4, 4, 4, 8);
+            Electronicos impresora = new Electronicos("HP", 2010, d_impresora, 3, Liniers, cliente6, 10, 11, 2022);
 
-            Dimensiones d_televisores = new Dimensiones(1.12F, 0.64F, 0.25F, 10.2F);
-            Televisores televisores = new Televisores("Samsung", 1023, d_televisores, 1, comuna10, cliente4);
+            Dimensiones d_televisores = new Dimensiones(11, 6, 2, 10);
+            Televisores televisores = new Televisores("Samsung", 1023, d_televisores, 1, comuna10, cliente4, 12, 11, 2022);
 
-            Dimensiones d_licuadora = new Dimensiones(0.23F, 0.22F, 0.16F, 1.4F);
-            PeqElq licuadora = new PeqElq("Philco", 4069, d_licuadora, 2, comuna18, cliente2);
+            Dimensiones d_licuadora = new Dimensiones(2, 2, 2, 1);
+            PeqElq licuadora = new PeqElq("Philco", 4069, d_licuadora, 2, comuna18, cliente2, 12, 11, 2022);
 
-            Dimensiones d_exprimidor = new Dimensiones(0.23F, 0.9F, 0.9F, 2F);
-            PeqElq exprimidor = new PeqElq("Samsung", 4023, d_exprimidor, 2, comuna20, cliente7);
+            Dimensiones d_exprimidor = new Dimensiones(2, 3, 3, 2);
+            PeqElq exprimidor = new PeqElq("Samsung", 4023, d_exprimidor, 2, comuna20, cliente7, 11, 11, 2022);
 
-            Dimensiones d_rallador = new Dimensiones(0.23F, 0.27F, 0.48F, 2F);
-            PeqElq rallador = new PeqElq("Philips", 4098, d_rallador, 3, comuna10, cliente4);
+            Dimensiones d_rallador = new Dimensiones(2, 2, 5, 2);
+            PeqElq rallador = new PeqElq("Philips", 4098, d_rallador, 3, comuna10, cliente4, 10, 11, 2022);
 
-            Dimensiones d_tostadora = new Dimensiones(0.12F, 0.21F, 0.16F, 1F);
-            PeqElq tostadora = new PeqElq("Philco", 4052, d_tostadora, 3, comuna1, cliente5);
+            Dimensiones d_tostadora = new Dimensiones(1, 2, 1, 1);
+            PeqElq tostadora = new PeqElq("Philco", 4052, d_tostadora, 3, comuna1, cliente5, 10, 11, 2022);
 
-            Dimensiones d_cafetera = new Dimensiones(0.20F, 0.27F, 0.29F, 2.7F);
-            PeqElq cafetera = new PeqElq("Philco", 4020, d_cafetera, 3, comuna1, cliente5);
+            Dimensiones d_cafetera = new Dimensiones(2, 3, 3, 3);
+            PeqElq cafetera = new PeqElq("Philco", 4020, d_cafetera, 3, comuna1, cliente5, 12, 11, 2022);
 
-            Dimensiones d_molinillo = new Dimensiones(0.11F, 0.13F, 0.13F, 1F);
-            PeqElq molinillo = new PeqElq("Samsung", 4021, d_molinillo, 3, comuna26, cliente3);
+            Dimensiones d_molinillo = new Dimensiones(1, 1, 1, 1);
+            PeqElq molinillo = new PeqElq("Samsung", 4021, d_molinillo, 3, comuna26, cliente3, 11, 11, 2022);
 
             // declaracion de los vehiculos
-            Furgon furgon = new Furgon(4900F, 10F, 14.84F, "AA123BZ", 70F, 7000, 10.8F, 0F, 0F);
+            Furgon furgon = new Furgon(4900F, 10F, 14.84F, "AA123BZ", 70F, 7000F, 50F, 0F, 0F);
             Furgoneta furgoneta = new Furgoneta(10F, 6.9F, "AB456ZZ", 84F, 3500F, 17F, 0F, 0F);
             Camioneta camioneta = new Camioneta(1.17F, 1.86F, 7.6F, "AD137GH", 50F, 750F, 5.9F, 0F, 0F);
 
@@ -530,27 +530,65 @@ namespace TPfinal_LP2
 
             // cocimundo
             Cocimundo cocimundo = new Cocimundo(lista_el, lista_vehiculos);
-            int h = 4;
             //ordenamos la lista por linea y prioridad
             lista_el = cocimundo.ordenar_lista_electrodomesticos(lista_el);
             // ordenamos la lista por cliente
-            lista_el=cocimundo.ordenar_por_cliente(lista_el);
+            lista_el = cocimundo.ordenar_por_cliente(lista_el);
             // calculamos el beneficio
             cocimundo.Beneficio(lista_el);
 
-            List<Electrodomesticos> lista = cocimundo.llenado_dinamico_(lista_el, furgon);
+            //LA LISTA QUE LE PASEMOS PARA EL RECORRIDO SIEMPRE TIENE QUE EMPEZAR Y TERMINAR EN LINIERS!!!!!!!
+
+            // calculamos el llenado optimo del camion y el camino a recorrer
+            List<Electrodomesticos> lista_furgon = cocimundo.llenado_dinamico_(ref lista_el, furgon);
+            List<Vertex> lista_vert_furg = cocimundo.ordenar_pordistancia(lista_furgon, Liniers);
+            List<Vertex> lista_recorrido_furgon = furgon.Reparticion_Greedy(grafo, lista_vert_furg);
+            furgoneta.Entregar_Productos(lista_furgon, lista_vert_furg);
+           
+            List<Electrodomesticos> lista_furgoneta = cocimundo.llenado_dinamico_(ref lista_el, furgoneta);
+            List<Vertex> lista_vert_furgn = cocimundo.ordenar_pordistancia(lista_furgoneta, Liniers);
+            List<Vertex> lista_recorrido_furgoneta = furgoneta.Reparticion_Greedy(grafo, lista_vert_furgn);
+            furgoneta.Entregar_Productos(lista_furgoneta, lista_vert_furg);
+           
+            List<Electrodomesticos> lista_camioneta = cocimundo.llenado_dinamico_(ref lista_el, camioneta);
+            List<Vertex> lista_vert_cam = cocimundo.ordenar_pordistancia(lista_camioneta, Liniers);
+            List<Vertex> lista_recorrido_camioneta = camioneta.Reparticion_Greedy(grafo, lista_vert_cam);
+            camioneta.Entregar_Productos(lista_camioneta, lista_vert_cam);
+          
+          
+           List<Electrodomesticos> lista_ = new List<Electrodomesticos>();
+            if (lista_el.Count != 0)
+            {
+                foreach (Electrodomesticos item in lista_el)
+                {
+                    int value = DateTime.Compare(item.get_datetime(), DateTime.Now);
+                    if (item.get_prioridad() == 1 && value < 0)// es el dia de su entrega pero no se hizo
+                    {
+                        lista_.Add(item);// lista de lementos con prioridad 1
+                        lista_vert_cam.Add(item.get_destino_entrega());
+                    }
+                    else if (item.get_prioridad() == 2 && value < 0)
+                    {
+                        item.set_prioridad(1);
+                    }
+                    else if (item.get_prioridad() == 3 && value < 0)
+                    {
+                        item.set_prioridad(2);
+                    }
+                }
+            }
+            int k=0;
+            while (k != 3 && lista_.Count != 0)
+            {
+                lista_vert_cam = cocimundo.ordenar_pordistancia(lista_camioneta, Liniers);
+                List<Electrodomesticos> lista_camioneta2 = cocimundo.llenado_dinamico_(ref lista_, camioneta);
+                List<Vertex> lista_reco = camioneta.Reparticion_Greedy(grafo, lista_vert_cam);
+                camioneta.Entregar_Productos(lista_, lista_reco);
+                k++;
+            }
             
-            List<Vertex> lista_vertices_entrega = cocimundo.ordenar_pordistancia(lista_el);
 
-            List<Vertex> lista_aux_vert = new List<Vertex>();
-            lista_aux_vert.Add(Liniers);
-            lista_aux_vert.Add(comuna7);
-            lista_aux_vert.Add(comuna10);
-            lista_aux_vert.Add(comuna11);
-
-
-            List<Vertex> lista_recorrido = furgon.Reparticion_Greedy(grafo, lista_aux_vert);
-            
+            Console.ReadKey();
         }
     }
 }

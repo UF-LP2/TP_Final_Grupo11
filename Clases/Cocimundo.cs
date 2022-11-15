@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -86,55 +87,163 @@ namespace TPfinal_LP2
             return lista_aux ;
         }
 
-        public List<Electrodomesticos> llenado_dinamico_(List<Electrodomesticos> lista, Vehiculo vehiculo)
+        public List<Electrodomesticos> llenado_dinamico_( ref List<Electrodomesticos> lista, Vehiculo vehiculo)
         {
-            float[,] matriz = new float[lista.Count, (int)vehiculo.get_volmax()];
-           
+            float[,] matriz = new float[lista.Count + 1, (int)vehiculo.get_volmax() +1];
+
+
             List<Electrodomesticos> lista_aux= new List<Electrodomesticos> ();
-            int j = 0;
-            for(int i = 0; i < lista.Count; i++)
+            bool elevador = false;
+
+
+            for (int i = 0; i < lista.Count + 1; i++)
             {
-                if (vehiculo.get_cargaactual() == vehiculo.get_cargamax() || vehiculo.get_volactual() == vehiculo.get_volmax())
+            
+                // verificamos que el elemento entra en el vehiculo para calcular su beneficio (solo el peso porque el volumen se encarga el for)
+
+                for (int k = 0; k < (int)vehiculo.get_volmax() + 1; k++)
+
                 {
-                    break;
-                }
-                for (int k = 0; k < (int)vehiculo.get_volmax(); k++) {
                     if (i == 0 || k == 0)
                     {
                         matriz[i, k] = 0;
+
                     }
-                    // verificamos que el elemento entra en el vehiculo
-                   else if ((lista[i].get_dimensiones().get_peso() + vehiculo.get_cargaactual()) < vehiculo.get_cargamax() && (lista[i].get_dimensiones().get_volumen() + vehiculo.get_volactual()) < vehiculo.get_volmax())
+
+                    else if (lista[i - 1].get_dimensiones().get_volumen() <= k)
                     {
-                        vehiculo.set_volactual(lista[i].get_dimensiones().get_volumen());
-                        vehiculo.set_cargaactual(lista[i].get_dimensiones().get_peso());
-                        matriz[i, k] = maximo(lista[i].get_beneficio() + matriz[i - 1, k - 1], matriz[i - 1, k]);
-                        if (matriz[i, k] > matriz[1 - 1, k - 1])
-                        {
-                            lista_aux.Add(lista[i]);
-                        }
-                   }
-                    else 
+                        
+                        int n = lista[i - 1].get_dimensiones().get_volumen();
+
+                        matriz[i, k] = maximo(lista[i - 1].get_beneficio() + matriz[i - 1, k - n], matriz[i - 1, k]);
+                    }
+
+                    else
                         matriz[i, k] = matriz[i - 1, k];
+
 
                 }
             }
+
+            for(int i=0;i<lista.Count();i++)
+            {
+                if (lista[i] is LineaBlanca && vehiculo is Furgon && elevador == false && i != 0)
+                {
+                    elevador = true;
+                    vehiculo.set_cargaactual(vehiculo.get_pesoelevador());
+                }
+            }
+
+            lista_aux = RecorridoMatriz(matriz, vehiculo, lista);
+            lista_aux = complemento_llenado_dinamico(ref lista, lista_aux, vehiculo);
+
             return lista_aux;
 
         }
 
-        public List<Vertex> ordenar_pordistancia(List<Electrodomesticos> lista)
+        public List<Electrodomesticos> RecorridoMatriz(float[,] matriz, Vehiculo vehiculo,List<Electrodomesticos>lista)
+        {
+            List<Electrodomesticos> lista_aux = new List<Electrodomesticos>();
+
+            float res = matriz[lista.Count(), (int)vehiculo.get_volmax()];
+            int l = lista.Count();
+            int j = (int)vehiculo.get_volmax();
+
+            while (l > 0 && j > 0)
+            {
+                if (matriz[l, j] == matriz[l - 1, j])
+                {
+                    l--;
+                    continue;
+                }
+                else
+                {
+                    lista_aux.Add(lista[l - 1]);
+                    j = j - (int)lista[l - 1].get_dimensiones().get_volumen();
+                    vehiculo.set_volactual(lista[l - 1].get_dimensiones().get_volumen());
+                    lista.Remove(lista[l - 1]);
+                    l--;
+                }
+            }
+
+            return lista_aux;
+
+        }
+
+        public List<Electrodomesticos> complemento_llenado_dinamico(ref List<Electrodomesticos> lista,List<Electrodomesticos> lista_llenado, Vehiculo vehiculo)
+        {
+            List<Electrodomesticos> lista_aux = new List<Electrodomesticos>();
+
+            //REVISAR EL VOLUMEN DEL VEHICULO!!!!
+            lista_llenado.Reverse();
+
+            while(lista_llenado.Count() != 0)
+            {
+                if (lista_llenado[lista_llenado.Count()-1].get_dimensiones().get_peso() + vehiculo.get_cargaactual() < vehiculo.get_cargamax()) //comparamos solo el peso porque ya sabemos que va a estar bien de volumen (la lista_llenado es la optima en cuanto a volumen)
+                {
+                    lista_aux.Add(lista_llenado[lista_llenado.Count()-1]);
+                    vehiculo.set_cargaactual(lista_llenado[lista_llenado.Count() - 1].get_dimensiones().get_peso());
+                    lista_llenado.Remove(lista_llenado[lista_llenado.Count() - 1]);
+                }
+                else
+                {
+                    lista.Add(lista_llenado[lista_llenado.Count() - 1]);
+                    lista_llenado.Remove(lista_llenado[lista_llenado.Count() - 1]);
+                }
+            }
+            //si queda peso y volumen disponible en el vehiculo, nos fijamos que elementos de la lista general de todos los pedidios pueden entrar en el vehiculo
+            if(vehiculo.get_cargaactual()<vehiculo.get_cargamax() && vehiculo.get_volactual()<vehiculo.get_volmax() && lista.Count > 0)
+            {
+                for (int i = 0; i < lista.Count(); i++)
+                {
+                    if (lista[i].get_dimensiones().get_peso() + vehiculo.get_cargaactual() < vehiculo.get_cargamax() && lista[i].get_dimensiones().get_volumen() + vehiculo.get_volactual() < vehiculo.get_volmax())
+                    {
+                        lista_aux.Add(lista[i]);
+                        vehiculo.set_cargaactual(lista[i].get_dimensiones().get_peso());
+                        vehiculo.set_volactual(lista[i].get_dimensiones().get_volumen());
+                        lista.Remove(lista[i]);
+                        i = i - 1;
+                    }
+                }
+            }
+           
+            //volvemos a ordenar la lista por linea y prioridad
+            lista = ordenar_lista_electrodomesticos(lista);
+            //volvemos a ordenar la lista por cliente
+            lista = ordenar_por_cliente(lista);
+
+            return lista_aux;
+
+        }
+
+        public List<Vertex> ordenar_pordistancia(List<Electrodomesticos> lista, Vertex liniers)
         {
             List<Vertex> lista_aux= new List<Vertex> ();
+            
             lista=lista.OrderBy(Electrodomesticos => Electrodomesticos.get_vertice_entrega().get_dist_liniers()).ToList();
-            for(int i=0; i<lista.Count; i++)
-            {
-                lista_aux.Add(lista[i].get_vertice_entrega());// nos creamos una lista de vertices ordenados segun su distancia a liniers
+            for (int i=1; i<lista.Count; i++)
+            {   if(lista_aux.Contains(lista[i].get_vertice_entrega()))
+                {// si ya habiamos agregado ese destino a la lista
+                    continue;
+                }
+                else
+                {
+                    lista_aux.Add(lista[i].get_vertice_entrega());// nos creamos una lista de vertices ordenados segun su distancia a liniers
+                }
+                
             }
+            lista_aux.Add(liniers);
             return lista_aux;
 
         }
-
+       
+        // le pasamos la lista de reparticion para saber el orden en el cual va a visitar los destinos el camion y asi gurdar bien los electrodomesticos
+        public void llenado_vehiculo(List<Electrodomesticos> lista, Vehiculo vehiculo, List<Vertex> lista_reparticion)
+        {
+            lista = lista.OrderBy(Electrodomesticos => Electrodomesticos.get_vertice_entrega().get_dist_liniers()).ToList();
+            vehiculo.set_vehiculolleno(true);
+            vehiculo.Entregar_Productos(lista, lista_reparticion);
+        }
         public float maximo(float a, float b)
         {
             return (a > b) ? a : b;
@@ -294,8 +403,14 @@ namespace TPfinal_LP2
                 // a cada contador obtenido hay q dividirlo por su distancia a liniers
                 for(int i=0; i<17; i++)
                 {
-                    lista[i].set_beneficio(contadores[lista[i].get_vertice_entrega().get_id()] / lista[i].get_vertice_entrega().get_dist_liniers());// seteamos el beneficio para cada producto
-                   
+                    if (lista[i].get_vertice_entrega().get_id() == 0)
+                    {
+                        lista[i].set_beneficio(2);
+                    }
+                    else
+                    {
+                        lista[i].set_beneficio(contadores[lista[i].get_vertice_entrega().get_id()] / lista[i].get_vertice_entrega().get_dist_liniers());// seteamos el beneficio para cada producto
+                    }
                 }
 
             }

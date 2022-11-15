@@ -8,7 +8,7 @@ namespace TPfinal_LP2
 {
     internal class PeqElq : Electrodomesticos 
     {
-        public PeqElq(string _marca, int _codigo, Dimensiones _dimensiones, int _prioridad, Vertex _vertice, Cliente _cliente) : base(_marca, _codigo, _dimensiones, _prioridad, _vertice, _cliente)
+        public PeqElq(string _marca, int _codigo, Dimensiones _dimensiones, int _prioridad, Vertex _vertice, Cliente _cliente, int d, int m, int a) : base(_marca, _codigo, _dimensiones, _prioridad, _vertice, _cliente, d, m, a)
         {
 
         }

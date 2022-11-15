@@ -8,10 +8,10 @@ namespace TPfinal_LP2
 {
     public class Dimensiones
     {
-        float alto, ancho, profundidad;
-        float peso;
+        int alto, ancho, profundidad;
+        int peso;
 
-        public Dimensiones(float _alto, float _ancho, float _profundidad, float _peso)
+        public Dimensiones(int _alto, int _ancho, int _profundidad, int _peso)
         {
             this.alto = _alto;
             this.ancho = _ancho;
@@ -19,14 +19,14 @@ namespace TPfinal_LP2
             this.peso = _peso;
         }
 
-        internal float get_peso()
+        internal int get_peso()
         {
             return peso;
         }
 
-        internal float get_volumen()
+        internal int get_volumen()
         {
-            return alto * ancho * profundidad;
+            return (alto * ancho * profundidad);
         }
     }
 }

@@ -1,4 +1,33 @@
-﻿namespace tp_final;
+﻿using TPfinal_LP2;
+
+namespace tp_final;
+/* liniers=0
+      Comuna1=1,
+       Comuna2=2,
+       Comuna3=3,
+       Comuna4=4,
+       Comuna5=5,
+       Comuna6=6,
+       Comuna7=7,
+       Comuna8=8,
+       Comuna9=9,
+       Comuna10=10,
+       Comuna11=11,
+       Comuna12=12,
+       Comuna13=13,
+       Comuna14=14,
+       Comuna15=15,
+       Avellaneda=16,
+       Lanus=17,
+       LomasZamora=18,
+       LaMatanza=19,
+       Moron=20,
+       Ituzaingo=21,
+       Hurlingham=22,
+       TresFebrero=23,
+       SanMartin=24,
+       SanIsidro=25,
+       VicenteLopez=26*/
 
 partial class Form1
 {
