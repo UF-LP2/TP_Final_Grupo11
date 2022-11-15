@@ -30,6 +30,10 @@ namespace TPfinal_LP2
             this.fecha_compra=new DateTime(a, m, d, 0, 0, 0);
         }
 
+        public int get_codigo()
+        {
+            return codigo;
+        }
         public int get_prioridad()
         {
             return prioridad;

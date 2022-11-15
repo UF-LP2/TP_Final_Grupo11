@@ -728,7 +728,7 @@ public partial class Form1 : Form
 
         // declaracion de los vehiculos
         furgon = new Furgon(4900F, 10F, 14.84F, "AA123BZ", 70F, 7000F, 50F, 0F, 0F);
-        furgoneta = new Furgoneta(10F, 6.9F, "AB456ZZ", 84F, 3500F, 17F, 0F, 0F);
+        furgoneta = new Furgoneta(10F, 6.9F, "AB456ZZ", 84F, 3500F, 40F, 0F, 0F);
         camioneta = new Camioneta(1.17F, 1.86F, 7.6F, "AD137GH", 50F, 750F, 30F, 0F, 0F);
 
         d_cocina = new Dimensiones(5, 5, 8, 35);
@@ -819,59 +819,17 @@ public partial class Form1 : Form
         lista_el = cocimundo.ordenar_por_cliente(lista_el);
         // calculamos el beneficio
         cocimundo.Beneficio(lista_el);
-
-        // calculamos el llenado optimo del camion y el camino a recorrer
-        lista_furgon = cocimundo.llenado_dinamico_(ref lista_el, furgon);
-        lista_vert_furg = cocimundo.ordenar_pordistancia(lista_furgon, Liniers);
-        lista_recorrido_furgon = furgon.Reparticion_Greedy(grafo, lista_vert_furg);
-
-
-        lista_furgoneta = cocimundo.llenado_dinamico_(ref lista_el, furgoneta);
-        lista_vert_furgn = cocimundo.ordenar_pordistancia(lista_furgoneta, Liniers);
-        lista_recorrido_furgoneta = furgoneta.Reparticion_Greedy(grafo, lista_vert_furgn);
-
-
-        lista_camioneta = cocimundo.llenado_dinamico_(ref lista_el, camioneta);
-        lista_vert_cam = cocimundo.ordenar_pordistancia(lista_camioneta, Liniers);
-        lista_recorrido_camioneta = camioneta.Reparticion_Greedy(grafo, lista_vert_cam);
-       
-        /* camioneta.Entregar_Productos(lista_camioneta, lista_vert_cam);
-        lista_ = new List<Electrodomesticos>();
-        if (lista_el.Count != 0)
-        {
-            foreach (Electrodomesticos item in lista_el)
-            {
-                value = DateTime.Compare(item.get_datetime(), DateTime.Now);
-                if (item.get_prioridad() == 1 && value < 0)// es el dia de su entrega pero no se hizo
-                {
-                    lista_.Add(item);// lista de lementos con prioridad 1
-                    lista_vert_cam.Add(item.get_destino_entrega());
-                }
-                else if (item.get_prioridad() == 2 && value < 0)
-                {
-                    item.set_prioridad(1);
-                }
-                else if (item.get_prioridad() == 3 && value < 0)
-                {
-                    item.set_prioridad(2);
-                }
-            }
-        }
-        
-        int k = 0;
-        while (k != 3 && lista_.Count != 0)
-        {
-            lista_vert_cam = cocimundo.ordenar_pordistancia(lista_camioneta, Liniers);
-            lista_camioneta = cocimundo.llenado_dinamico_(ref lista_, camioneta);
-            lista_recorrido_camioneta = camioneta.Reparticion_Greedy(grafo, lista_vert_cam);
-            camioneta.Entregar_Productos(lista_, lista_recorrido_camioneta);
-            k++;
-        }*/
+   
 
     }
 
     private void button1_Click(object sender, EventArgs e)
     {
+        // calculamos el llenado optimo del camion y el camino a recorrer
+        lista_furgon = cocimundo.llenado_dinamico_(ref lista_el, furgon);
+        lista_vert_furg = cocimundo.ordenar_pordistancia(lista_furgon, Liniers);
+        lista_recorrido_furgon = furgon.Reparticion_Greedy(grafo, lista_vert_furg);
+
         if (lista_recorrido_furgon.Count() > 1)
         { // si no solo entrega en liniers
             foreach (Vertex item in lista_recorrido_furgon)
@@ -880,6 +838,13 @@ public partial class Form1 : Form
                 lista_recorridos_tabla.Items.Add(lista_forms);
             }
         }
+
+        foreach (Electrodomesticos item in lista_furgon)
+        {
+            ListViewItem lista_forms = new ListViewItem(item.get_codigo().ToString());
+            lista_prod_furgon.Items.Add(lista_forms);
+        }
+
         furgon.Entregar_Productos(lista_furgon, lista_vert_furg);
 
     }
@@ -896,6 +861,11 @@ public partial class Form1 : Form
 
     private void button1_Click_1(object sender, EventArgs e)
     {
+        lista_furgoneta = cocimundo.llenado_dinamico_(ref lista_el, furgoneta);
+        lista_vert_furgn = cocimundo.ordenar_pordistancia(lista_furgoneta, Liniers);
+        lista_recorrido_furgoneta = furgoneta.Reparticion_Greedy(grafo, lista_vert_furgn);
+        
+
         if (lista_recorrido_furgoneta.Count() > 1)
         { // si no solo entrega en liniers
             foreach (Vertex item in lista_recorrido_furgoneta)
@@ -905,6 +875,11 @@ public partial class Form1 : Form
             }
         }
         
+        foreach (Electrodomesticos item in lista_furgoneta)
+        {
+            ListViewItem lista_forms = new ListViewItem(item.get_codigo().ToString());
+            lista_prod_furgoneta.Items.Add(lista_forms);
+        }
 
         furgoneta.Entregar_Productos(lista_furgoneta, lista_vert_furg);
 
@@ -918,6 +893,10 @@ public partial class Form1 : Form
         {
                 case 0:
                 {
+                    lista_camioneta = cocimundo.llenado_dinamico_(ref lista_el, camioneta);
+                    lista_vert_cam = cocimundo.ordenar_pordistancia(lista_camioneta, Liniers);
+                    lista_recorrido_camioneta = camioneta.Reparticion_Greedy(grafo, lista_vert_cam);
+
                     if (lista_recorrido_camioneta.Count() > 1)
                     { // si no solo entrega en liniers
                         foreach (Vertex item in lista_recorrido_camioneta)
@@ -926,6 +905,14 @@ public partial class Form1 : Form
                             lista_camioneta_view.Items.Add(lista_forms);
                         }
                     }
+
+                    foreach (Electrodomesticos item in lista_camioneta)
+                    {
+                        ListViewItem lista_forms = new ListViewItem(item.get_codigo().ToString());
+                        lista_prod_camioneta.Items.Add(lista_forms);
+                    }
+
+
                     camioneta.Entregar_Productos(lista_camioneta, lista_vert_cam);
 
                     lista_ = new List<Electrodomesticos>();
@@ -971,6 +958,15 @@ public partial class Form1 : Form
                             lista_camioneta_view.Items.Add(lista_forms);
                         }
                     }
+
+                    lista_prod_camioneta.Items.Clear();
+                    foreach (Electrodomesticos item in lista_camioneta)
+                    {
+                        ListViewItem lista_forms = new ListViewItem(item.get_codigo().ToString());
+                        lista_prod_camioneta.Items.Add(lista_forms);
+                    }
+
+
                     camioneta.Entregar_Productos(lista_camioneta, lista_vert_cam);
 
                     lista_ = new List<Electrodomesticos>();
@@ -1015,6 +1011,13 @@ public partial class Form1 : Form
                             ListViewItem lista_forms = new ListViewItem(item.get_nombre());
                             lista_camioneta_view.Items.Add(lista_forms);
                         }
+                    }
+
+                    lista_prod_camioneta.Items.Clear();
+                    foreach (Electrodomesticos item in lista_camioneta)
+                    {
+                        ListViewItem lista_forms = new ListViewItem(item.get_codigo().ToString());
+                        lista_prod_camioneta.Items.Add(lista_forms);
                     }
 
                     camioneta.Entregar_Productos(lista_camioneta, lista_vert_cam);
@@ -1062,6 +1065,13 @@ public partial class Form1 : Form
                         }
                     }
 
+                    lista_prod_camioneta.Items.Clear();
+                    foreach (Electrodomesticos item in lista_camioneta)
+                    {
+                        ListViewItem lista_forms = new ListViewItem(item.get_codigo().ToString());
+                        lista_prod_camioneta.Items.Add(lista_forms);
+                    }
+
                     camioneta.Entregar_Productos(lista_camioneta, lista_vert_cam);
 
                     lista_ = new List<Electrodomesticos>();
@@ -1102,6 +1112,11 @@ public partial class Form1 : Form
                 }
         }
         
+    }
+
+    private void listView1_SelectedIndexChanged_1(object sender, EventArgs e)
+    {
+
     }
 }
 
