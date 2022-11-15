@@ -729,7 +729,7 @@ public partial class Form1 : Form
         // declaracion de los vehiculos
         furgon = new Furgon(4900F, 10F, 14.84F, "AA123BZ", 70F, 7000F, 50F, 0F, 0F);
         furgoneta = new Furgoneta(10F, 6.9F, "AB456ZZ", 84F, 3500F, 17F, 0F, 0F);
-        camioneta = new Camioneta(1.17F, 1.86F, 7.6F, "AD137GH", 50F, 750F, 5.9F, 0F, 0F);
+        camioneta = new Camioneta(1.17F, 1.86F, 7.6F, "AD137GH", 50F, 750F, 30F, 0F, 0F);
 
         d_cocina = new Dimensiones(5, 5, 8, 35);
         cocina = new LineaBlanca("Lenovo", 3256, d_cocina, 2, comuna5, cliente1, 9, 11, 2022);
@@ -834,7 +834,8 @@ public partial class Form1 : Form
         lista_camioneta = cocimundo.llenado_dinamico_(ref lista_el, camioneta);
         lista_vert_cam = cocimundo.ordenar_pordistancia(lista_camioneta, Liniers);
         lista_recorrido_camioneta = camioneta.Reparticion_Greedy(grafo, lista_vert_cam);
-       /* camioneta.Entregar_Productos(lista_camioneta, lista_vert_cam);
+       
+        /* camioneta.Entregar_Productos(lista_camioneta, lista_vert_cam);
         lista_ = new List<Electrodomesticos>();
         if (lista_el.Count != 0)
         {
@@ -945,7 +946,7 @@ public partial class Form1 : Form
                     lista_vert_cam = cocimundo.ordenar_pordistancia(lista_camioneta, Liniers);
                     lista_camioneta = cocimundo.llenado_dinamico_(ref lista_, camioneta);
                     lista_recorrido_camioneta = camioneta.Reparticion_Greedy(grafo, lista_vert_cam);
-
+                    
                     contador_camioneta++;
 
                     break;
@@ -953,7 +954,7 @@ public partial class Form1 : Form
 
                 case 1:
                 {
-                    lista_camioneta_view.Clear();
+                    
                     foreach (Vertex item in lista_recorrido_camioneta)
                     {
                         ListViewItem lista_forms = new ListViewItem(item.get_nombre());
@@ -996,7 +997,7 @@ public partial class Form1 : Form
 
                 case 2:
                 {
-                    lista_camioneta_view.Clear();
+                    
                     foreach (Vertex item in lista_recorrido_camioneta)
                     {
                         ListViewItem lista_forms = new ListViewItem(item.get_nombre());
@@ -1038,7 +1039,7 @@ public partial class Form1 : Form
 
                 case 3:
                 {
-                    lista_camioneta_view.Clear();
+                    
                     foreach (Vertex item in lista_recorrido_camioneta)
                     {
                         ListViewItem lista_forms = new ListViewItem(item.get_nombre());
