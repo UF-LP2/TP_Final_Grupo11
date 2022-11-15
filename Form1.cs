@@ -872,12 +872,14 @@ public partial class Form1 : Form
 
     private void button1_Click(object sender, EventArgs e)
     {
-       foreach(Vertex item in lista_recorrido_furgon)
-        {
-            ListViewItem lista_forms = new ListViewItem(item.get_nombre());
-            lista_recorridos_tabla.Items.Add(lista_forms);
+        if (lista_recorrido_furgon.Count() > 1)
+        { // si no solo entrega en liniers
+            foreach (Vertex item in lista_recorrido_furgon)
+            {
+                ListViewItem lista_forms = new ListViewItem(item.get_nombre());
+                lista_recorridos_tabla.Items.Add(lista_forms);
+            }
         }
-
         furgon.Entregar_Productos(lista_furgon, lista_vert_furg);
 
     }
@@ -894,11 +896,15 @@ public partial class Form1 : Form
 
     private void button1_Click_1(object sender, EventArgs e)
     {
-        foreach (Vertex item in lista_recorrido_furgoneta)
-        {
-            ListViewItem lista_forms = new ListViewItem(item.get_nombre());
-            lista_furgoneta_view.Items.Add(lista_forms);
+        if (lista_recorrido_furgoneta.Count() > 1)
+        { // si no solo entrega en liniers
+            foreach (Vertex item in lista_recorrido_furgoneta)
+            {
+                ListViewItem lista_forms = new ListViewItem(item.get_nombre());
+                lista_furgoneta_view.Items.Add(lista_forms);
+            }
         }
+        
 
         furgoneta.Entregar_Productos(lista_furgoneta, lista_vert_furg);
 
@@ -912,12 +918,14 @@ public partial class Form1 : Form
         {
                 case 0:
                 {
-                    foreach (Vertex item in lista_recorrido_camioneta)
-                    {
-                        ListViewItem lista_forms = new ListViewItem(item.get_nombre());
-                        lista_camioneta_view.Items.Add(lista_forms);
+                    if (lista_recorrido_camioneta.Count() > 1)
+                    { // si no solo entrega en liniers
+                        foreach (Vertex item in lista_recorrido_camioneta)
+                        {
+                            ListViewItem lista_forms = new ListViewItem(item.get_nombre());
+                            lista_camioneta_view.Items.Add(lista_forms);
+                        }
                     }
-                    
                     camioneta.Entregar_Productos(lista_camioneta, lista_vert_cam);
 
                     lista_ = new List<Electrodomesticos>();
@@ -955,12 +963,14 @@ public partial class Form1 : Form
                 case 1:
                 {
                     lista_camioneta_view.Items.Clear();
-                    foreach (Vertex item in lista_recorrido_camioneta)
-                    {
-                        ListViewItem lista_forms = new ListViewItem(item.get_nombre());
-                        lista_camioneta_view.Items.Add(lista_forms);
+                    if (lista_recorrido_camioneta.Count() > 1)
+                    { // si no solo entrega en liniers
+                        foreach (Vertex item in lista_recorrido_camioneta)
+                        {
+                            ListViewItem lista_forms = new ListViewItem(item.get_nombre());
+                            lista_camioneta_view.Items.Add(lista_forms);
+                        }
                     }
-                    
                     camioneta.Entregar_Productos(lista_camioneta, lista_vert_cam);
 
                     lista_ = new List<Electrodomesticos>();
@@ -998,10 +1008,13 @@ public partial class Form1 : Form
                 case 2:
                 {
                     lista_camioneta_view.Items.Clear();
-                    foreach (Vertex item in lista_recorrido_camioneta)
-                    {
-                        ListViewItem lista_forms = new ListViewItem(item.get_nombre());
-                        lista_camioneta_view.Items.Add(lista_forms);
+                    if (lista_recorrido_camioneta.Count() > 1)
+                    { // si no solo entrega en liniers
+                        foreach (Vertex item in lista_recorrido_camioneta)
+                        {
+                            ListViewItem lista_forms = new ListViewItem(item.get_nombre());
+                            lista_camioneta_view.Items.Add(lista_forms);
+                        }
                     }
 
                     camioneta.Entregar_Productos(lista_camioneta, lista_vert_cam);
@@ -1040,10 +1053,13 @@ public partial class Form1 : Form
                 case 3:
                 {
                     lista_camioneta_view.Items.Clear();
-                    foreach (Vertex item in lista_recorrido_camioneta)
-                    {
-                        ListViewItem lista_forms = new ListViewItem(item.get_nombre());
-                        lista_camioneta_view.Items.Add(lista_forms);
+                    if (lista_recorrido_camioneta.Count() > 1)
+                    { // si no solo entrega en liniers
+                        foreach (Vertex item in lista_recorrido_camioneta)
+                        {
+                            ListViewItem lista_forms = new ListViewItem(item.get_nombre());
+                            lista_camioneta_view.Items.Add(lista_forms);
+                        }
                     }
 
                     camioneta.Entregar_Productos(lista_camioneta, lista_vert_cam);
