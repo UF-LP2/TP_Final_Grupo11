@@ -58,7 +58,7 @@ namespace TPfinal_LP2
         }
         public void set_vehiculolleno(bool i)
         {
-            vehiculo_lleno=i;
+            vehiculo_lleno = i;
         }
         public float get_pesoelevador()
         {
@@ -66,28 +66,28 @@ namespace TPfinal_LP2
         }
 
         //le pasamos un grafo que determina todas las adyacencias y una lista de vertices que son los destinos a recorrer obligatoriamente
-        public List<Vertex> Reparticion_Greedy(Graph grafo_total, List<Vertex> destinos_avisitar) 
+        public List<Vertex> Reparticion_Greedy(Graph grafo_total, List<Vertex> destinos_avisitar)
         {
             List<Vertex> lista_aux = new List<Vertex>();
             Vertex vertice_actual = grafo_total.get_lista_vertices()[0];
             Vertex Liniers = grafo_total.get_lista_vertices()[0];// siempre nuestra primer entrega es liniers
 
-            lista_aux.Add(Liniers);
+            
             while (destinos_avisitar.Count > 0)
             {
                 int pos = BuscarAdyacente(vertice_actual);
                 lista_aux.Add(vertice_actual);// gurdamos en la lista auxiliar el recorrido
-                
+
                 if (pos == -1)// si no pudo acceder a sus adyacentes
                 {
                     vertice_actual.get_antysig_destino().Clear();// seteamos a cero todas sus localidades visitadas
-                  
+
                     pos = BuscarAdyacente(vertice_actual);
 
                 }
                 vertice_actual.get_antysig_destino().Add(vertice_actual.get_lista_edge()[pos].get_id_destino());
- 
-                
+
+
 
                 // buscamos la localidad en el grafo (es nuestro destino final)
                 if (vertice_actual.get_id() == destinos_avisitar[0].get_id())
@@ -99,7 +99,7 @@ namespace TPfinal_LP2
             }
             return lista_aux;
         }
-        
+
         public Vertex ModificarVerticeActual(Vertex vertice_actual, Graph grafo_total, int pos)
         {
 
@@ -150,9 +150,9 @@ namespace TPfinal_LP2
 
         public void Entregar_Productos(List<Electrodomesticos> lista_electrodomesticos, List<Vertex> lista_recorrido)
         {
-            for(int i=0;i<lista_recorrido.Count;i++)
+            for (int i = 0; i < lista_recorrido.Count; i++)
             {
-                for(int j=0;j<lista_electrodomesticos.Count();j++)
+                for (int j = 0; j < lista_electrodomesticos.Count(); j++)
                 {
                     if (lista_electrodomesticos[j].get_destino_entrega() == lista_recorrido[i])
                     {
@@ -162,12 +162,6 @@ namespace TPfinal_LP2
             }
             set_vehiculolleno(false);
         }
-
-            }// fin for i
-            return lista_aux;
-        }// fin while
-
-        
 
     }
 }

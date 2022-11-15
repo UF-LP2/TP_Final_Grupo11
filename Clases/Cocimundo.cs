@@ -221,7 +221,7 @@ namespace TPfinal_LP2
             List<Vertex> lista_aux= new List<Vertex> ();
             
             lista=lista.OrderBy(Electrodomesticos => Electrodomesticos.get_vertice_entrega().get_dist_liniers()).ToList();
-            for (int i=1; i<lista.Count; i++)
+            for (int i=0; i<lista.Count; i++)
             {   if(lista_aux.Contains(lista[i].get_vertice_entrega()))
                 {// si ya habiamos agregado ese destino a la lista
                     continue;
